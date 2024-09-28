@@ -17,11 +17,14 @@ def generate_mc_no(roll_no):
     return f"{prefix}{roll_no}"
 
 # Function to generate the PDF
-def generate_pdf(patient_name, roll_no, mc_no, bill_no, date, medicines, prescribed_by, physician_name):
+def generate_pdf(patient_name, roll_no, mc_no, bill_no, date, medicines, prescribed_by, physician_name, institute, end_note, end_note_contact):
+
     # Define the output directory in the parent directory
     output_dir = os.path.join(os.path.dirname(os.getcwd()), 'Prescriptions')
+
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
+
     # Create a new PDF
     pdf_file = f"{bill_no}.pdf"
     pdf_file_path = os.path.join(output_dir, pdf_file)
