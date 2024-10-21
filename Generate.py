@@ -41,48 +41,14 @@ def run_main_script(main_script):
         print(f"Error running main script '{main_script}': {e}")
         sys.exit(1)
 
-def get_user_selection():
-    """Prompt user for selection between default prescription and NIT template."""
-    print("Select the template:")
-    print("1. Default Medicine Prescription")
-    print("2. NIT Template")
-    selection = input("Enter your choice (1 or 2): ")
-    if selection not in ['1', '2']:
-        print("Invalid selection. Please enter 1 or 2.")
-        sys.exit(1)
-    return selection
-
 if __name__ == "__main__":
     requirements_file = os.path.join('bin', 'requirements.txt')
-    
-    # Install the required packages
-    install_packages(requirements_file)
-
-    # Get user selection (Default or NIT Template)
-    selection = get_user_selection()
 
     # Detect the OS and select the main script accordingly
     if platform.system() == 'Linux':
-        if selection == '1':  # Default medicine prescription
-            main_script = os.path.join('bin', 'default_linux.py')
-        else:  # NIT Template
-            main_script = os.path.join('bin', 'nit_linux.py')
-    
-    elif platform.system() == 'Darwin':  # macOS
-        if selection == '1':  # Default medicine prescription
-            main_script = os.path.join('bin', 'default_mac.py')
-        else:  # NIT Template
-            main_script = os.path.join('bin', 'nit_mac.py')
-    
-    elif platform.system() == 'Windows':
-        if selection == '1':  # Default medicine prescription
-            main_script = os.path.join('bin', 'default_windows.py')
-        else:  # NIT Template
-            main_script = os.path.join('bin', 'nit_windows.py')
-    
+        main_script = os.path.join('bin', 'CLI_linux.py')  # Main script for Linux
     else:
-        print(f"Unsupported OS: {platform.system()}")
-        sys.exit(1)
+        main_script = os.path.join('bin', 'cli.py.py')  # Main script for Windows or others
 
-    # Run the selected main script
+    install_packages(requirements_file)
     run_main_script(main_script)
